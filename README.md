@@ -19,7 +19,7 @@
 
 Once you have Git installed (verify by running `git --version` in cmd/shell), clone this repository by running the following somewhere safe on your disk. You will be asked for a username and password. Use the ones you used to create the bitbucket account.
 
-    `git clone https://hamidsafdari@bitbucket.org/hamidsafdari/weatherwise.git`
+    git clone https://hamidsafdari@bitbucket.org/hamidsafdari/weatherwise.git
 
 Let's say you are in `D:\workspace\java`. Once you clone the project there, there should be a folder created inside `D:\workspace\java` called `weatherwise`. Go into that folder.
 
@@ -31,11 +31,11 @@ Assuming you are in `D:\workspace\java\weatherwise`, run the following in the co
 
 On Windows
 
-    `java -cp 'lib\jade.jar':'build\classes\main' jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent`
+    java -cp 'lib\jade.jar':'build\classes\main' jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
 
 On Mac/Linux
 
-    `java -cp 'lib/jade.jar':'build/classes/main' jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent`
+    java -cp 'lib/jade.jar':'build/classes/main' jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
 
 If everything goes without a problem, you should see a new window open and your command line should output `this is agent: agent1`
 
@@ -43,10 +43,10 @@ If everything goes without a problem, you should see a new window open and your 
 
 Do your work on the code and make sure everything is saved. Then on the command line, go to the project directory and do:
 
-    `git add .`
-    `git commit -m "ENTER A SHORT MESSAGE HERE DESCRIBING WHAT YOU DID"`
-    `git pull origin master`
+    git add .
+    git commit -m "ENTER A SHORT MESSAGE HERE DESCRIBING WHAT YOU DID"
+    git pull origin master
     
 If you don't see any errors, then do:
 
-    `git push -u origin master`
+    git push -u origin master
