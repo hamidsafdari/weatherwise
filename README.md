@@ -8,7 +8,7 @@
 
 ### Setting up the project ###
 
-* Create an account on [bitbucket](https://bitbucket.org)
+* Create an account on [github](https://github.com)
 * Download and install these tools in the order they appear
     * [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
     * [Git](https://git-scm.com/downloads)
@@ -31,7 +31,7 @@ Assuming you are in `D:\workspace\java\weatherwise`, run the following in the co
 
 On Windows
 
-    java -cp 'lib\jade.jar':'build\classes\main' jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
+    java -cp "lib\jade.jar";"build\classes\main" jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
 
 On Mac/Linux
 
