@@ -17,9 +17,10 @@
         * [Eclipse](https://www.eclipse.org/downloads/?) (moderately difficult) 
         * [Intellij Idea (Community Edition without JDK)](https://www.jetbrains.com/idea/#chooseYourEdition) (needs a lot of learning))
 
-Once you have Git installed (verify by running `git --version` in cmd/shell), clone this repository by running the following somewhere safe on your disk. You will be asked for a username and password. Use the ones you used to create the bitbucket account.
+Once you have Git installed (verify by running `git --version` in cmd/shell), clone this repository by running the following somewhere safe on your disk. You will be asked for a
+ username and password. Use the ones you used to create the github account.
 
-    git clone https://hamidsafdari@bitbucket.org/hamidsafdari/weatherwise.git
+    git clone https://github.com/hamidsafdari/weatherwise.git
 
 Let's say you are in `D:\workspace\java`. Once you clone the project there, there should be a folder created inside `D:\workspace\java` called `weatherwise`. Go into that folder.
 
