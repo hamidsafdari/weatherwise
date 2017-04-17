@@ -1,6 +1,6 @@
-# README #
+## README
 
-### What is this repository for? ###
+### Sections
 
 * Setting up the project
 * Running the project
@@ -32,11 +32,11 @@ Assuming you are in `D:\workspace\java\weatherwise`, run the following in the co
 
 On Windows
 
-    java -cp "lib\jade.jar";"build\classes\main" jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
+    java -cp "lib\*";"build\classes" jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
 
 On Mac/Linux
 
-    java -cp 'lib/jade.jar':'build/classes/main' jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
+    java -cp 'lib/*':'build/classes' jade.Boot -gui -agents agent1:sau.hw.ai.agents.UIAgent
 
 If everything goes without a problem, you should see a new window open and your command line should output `this is agent: agent1`
 
