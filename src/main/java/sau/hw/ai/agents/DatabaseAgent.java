@@ -7,15 +7,11 @@ package sau.hw.ai.agents;
 
 import jade.core.Agent;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 /**
  *
@@ -31,17 +27,14 @@ public class DatabaseAgent extends Agent {
         try {
             String string = FileUtils.readFileToString(new File(DATABASE_FILE), "utf-8");
             System.out.println(string);
-//            database = new JSONObject(string);
-//            System.out.println(database);
-//            JSONArray arrayWeather = database.getJSONArray("weather");
-//            for(int i = 0; i < arrayWeather.length(); i++) {
-//                JSONObject item = arrayWeather.getJSONObject(i);
-////                item.get
-//            }
-        } /*catch (JSONException ex) {
-            ex.printStackTrace();
-        }*/ catch (IOException ex) {
-            ex.printStackTrace();
+            database = new JSONObject(string);
+            System.out.println(database);
+            JSONArray arrayWeather = database.getJSONArray("weather");
+            for (int i = 0; i < arrayWeather.length(); i++) {
+                JSONObject item = arrayWeather.getJSONObject(i);
+//                item.get
+            }
+        } catch (JSONException | IOException ex) {
         }
     }
 }
