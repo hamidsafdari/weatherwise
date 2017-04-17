@@ -1,0 +1,22 @@
+{
+    "weather": [
+        {
+            "Activity": "Running",
+            "Temperature": "30C",
+            "Description": "Sunny"
+
+        },
+        {
+            "Activity": "Swimming",
+            "Temperature": "35C",
+            "Description": "Sunny & Hot"
+
+        },
+        {
+            "Activity": "Play Football",
+            "Temperature": "28C",
+            "Description": "Overcast"
+
+        }
+    ]
+}

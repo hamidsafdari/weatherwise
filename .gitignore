@@ -2,3 +2,5 @@
 .gradle/
 APDescription.txt
 build/
+*.txt
+dist/
