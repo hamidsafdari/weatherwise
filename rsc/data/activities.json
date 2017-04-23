@@ -25,6 +25,15 @@
         "snow",
         "sun"
       ]
+    },
+    {
+      "name": "Watch a storm",
+      "min-temp": "-10",
+      "max-temp": "50",
+      "desired-conditions": [
+        "rain",
+        "thunder"
+      ]
     }
   ]
 }

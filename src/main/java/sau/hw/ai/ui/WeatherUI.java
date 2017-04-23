@@ -159,7 +159,7 @@ public class WeatherUI extends JFrame {
 		JButton btnExit = new JButton("Close");
 		btnExit.setFont(uiFont);
 		btnExit.addActionListener(e -> {
-			System.out.println("exiting the app");
+			//System.out.println("exiting the app");
 			try {
 				Ontology jmo = JADEManagementOntology.getInstance();
 				SLCodec codec = new SLCodec();
@@ -188,6 +188,11 @@ public class WeatherUI extends JFrame {
 		labelPicture.setIcon(null);
 	}
 
+	private void setMessageOutput(String message) {
+		labelTemp.setText(message);
+		labelPicture.setVisible(false);
+	}
+
 	public void updateActivities(String[] names) {
 		Arrays.sort(names);
 
@@ -206,7 +211,8 @@ public class WeatherUI extends JFrame {
 				int tempMax = output.getInt("tempMax");
 				String condition = output.getString("condition");
 
-				labelTemp.setText("<html> Temperature: down(" + tempMin + "c) | up(" + tempMax + "c) <br> " + DISPLAY_DATE_FORMAT.format(date) + " </html>");
+				labelTemp.setText("<html> <p style='text-align:center'> Temperature: down(" + tempMin + "c) | up(" + tempMax + "c) <br> " +
+						DISPLAY_DATE_FORMAT.format(date) + " </p> </html>");
 
 				if (condition != null) {
 					condition = condition.toLowerCase();
@@ -254,11 +260,13 @@ public class WeatherUI extends JFrame {
 		}
 
 		clearOutput();
+		setMessageOutput("The next 5 days don't seem to be OK for that activity");
 	}
 
 	private void setWeatherIcon(String iconPath) throws IOException {
 		BufferedImage image = ImageIO.read(new File(iconPath));
 		labelPicture.removeAll();
+		labelPicture.setVisible(true);
 		labelPicture.setIcon(new ImageIcon(image.getScaledInstance(WEATHER_ICON_SIZE, WEATHER_ICON_SIZE, Image.SCALE_SMOOTH)));
 		labelPicture.setSize(WEATHER_ICON_SIZE, WEATHER_ICON_SIZE);
 	}

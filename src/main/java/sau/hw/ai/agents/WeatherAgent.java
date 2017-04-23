@@ -27,8 +27,6 @@ public class WeatherAgent extends Agent {
 	@Override
 	protected void setup() {
 		thisAgent = this;
-
-		System.out.println(WeatherAgent.class.getSimpleName());
 		addBehaviour(new QueryReceiver());
 	}
 
@@ -38,8 +36,6 @@ public class WeatherAgent extends Agent {
 			ACLMessage message = thisAgent.receive();
 			if (message != null) {
 				if (ONTOLOGY_WEATHER_REPORT.equals(message.getOntology())) {
-					System.out.println("received request for weather report");
-
 					try {
 						String testWeather = FileUtils.readFileToString(new File("./rsc/data/sample_weather.json"), "utf-8");
 						JSONObject weatherJson = new JSONObject(testWeather);

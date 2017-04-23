@@ -51,9 +51,6 @@ public class DatabaseAgent extends Agent {
 	@Override
 	public void setup() {
 		thisAgent = this;
-		System.out.println("==============");
-		System.out.println("starting agent: " + getLocalName());
-		System.out.println("==============");
 
 		try {
 			String string = FileUtils.readFileToString(new File(DATABASE_FILE), "utf-8");
@@ -141,7 +138,7 @@ public class DatabaseAgent extends Agent {
 
 							if (tempMin >= targetActivity.getMinTemperature() && targetActivity.getMaxTemperature() >= tempMax) {
 								for (String desiredCondition : targetActivity.getDesiredConditions()) {
-									System.out.println(weatherCondition + ", " + desiredCondition);
+									//System.out.println(weatherCondition + ", " + desiredCondition);
 
 									if (weatherCondition.toLowerCase().contains(desiredCondition)) {
 										JSONObject dayWeather = new JSONObject();

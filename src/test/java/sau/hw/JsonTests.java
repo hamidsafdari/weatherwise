@@ -32,7 +32,7 @@ public class JsonTests {
 			//            System.out.println(string);
 
 			database = new JSONObject(string);
-			System.out.println(database);
+			//System.out.println(database);
 			//            JSONArray arrayWeather = database.getJSONArray("weather");
 			//            for(int i = 0; i < arrayWeather.length(); i++) {
 			//                JSONObject item = arrayWeather.getJSONObject(i);

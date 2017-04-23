@@ -48,7 +48,7 @@ public class UIAgent extends Agent {
 			ACLMessage message = thisAgent.receive();
 			if (message != null) {
 				if (DatabaseAgent.ONTOLOGY_ACTIVITIES.equals(message.getOntology())) {
-					System.out.println("received the activities");
+					//System.out.println("received the activities");
 
 					String messageText = message.getContent();
 					activities = messageText.split(",");
