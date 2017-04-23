@@ -139,11 +139,11 @@ public class DatabaseAgent extends Agent {
 							int tempMin = day.getJSONObject("Temperature").getJSONObject("Minimum").getInt("Value");
 							int tempMax = day.getJSONObject("Temperature").getJSONObject("Maximum").getInt("Value");
 
-							if (tempMin >= targetActivity.getMinTemperature() && targetActivity.getMaxTemperature() <= tempMax) {
+							if (tempMin >= targetActivity.getMinTemperature() && targetActivity.getMaxTemperature() >= tempMax) {
 								for (String desiredCondition : targetActivity.getDesiredConditions()) {
 									System.out.println(weatherCondition + ", " + desiredCondition);
 
-									if (weatherCondition.contains(desiredCondition)) {
+									if (weatherCondition.toLowerCase().contains(desiredCondition)) {
 										JSONObject dayWeather = new JSONObject();
 										dayWeather.put("tempMin", tempMin);
 										dayWeather.put("tempMax", tempMax);

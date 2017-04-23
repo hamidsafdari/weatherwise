@@ -4,8 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
@@ -42,31 +43,35 @@ import jade.lang.acl.ACLMessage;
 import sau.hw.ai.agents.WeatherAgent;
 
 public class WeatherUI extends JFrame {
-	public static final DateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
-	public static final DateFormat DISPLAY_DATE_FORMAT = new SimpleDateFormat("E, dd/MM");
+	private static final DateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
+	private static final DateFormat DISPLAY_DATE_FORMAT = new SimpleDateFormat("E, dd/MM");
 
 	private static final String TITLE_WINDOW = "WeatherWise";
 	private static final int WIDTH_WINDOW = 800;
 	private static final int HEIGHT_WINDOW = 600;
 
 	private JComboBox<String> cbActivities;
-	private JButton buttonOK;
 	private Agent agent;
 	private JLabel labelTemp;
 	private JLabel labelPicture;
-	public static final int WEATHER_ICON_SIZE = 200;
+	private static final int WEATHER_ICON_SIZE = 200;
 
 	public WeatherUI(Agent agent) throws HeadlessException {
 		this.agent = agent;
 	}
 
 	public void start() {
+
 		setTitle(TITLE_WINDOW);
 		setSize(WIDTH_WINDOW, HEIGHT_WINDOW);
 
 		setLayout(new BorderLayout());
 		JPanel panelContents = new JPanel();
 		panelContents.setLayout(new BorderLayout(5, 5));
+		panelContents.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+		Font uiFont = panelContents.getFont();
+		uiFont = new Font(uiFont.getName(), uiFont.getStyle(), uiFont.getSize() + 3);
 
 		GridBagConstraints c = new GridBagConstraints();
 		JPanel panelTop = new JPanel(new BorderLayout(5, 5));
@@ -75,37 +80,41 @@ public class WeatherUI extends JFrame {
 		panelTop.add(panelDisplayTop, BorderLayout.NORTH);
 		panelTop.add(panelDisplayBottom, BorderLayout.CENTER);
 
-		JPanel panelLeftDropdown = new JPanel();
-		panelLeftDropdown.setLayout(new BoxLayout(panelLeftDropdown, BoxLayout.Y_AXIS));
-
-		JLabel labelActivity = new JLabel("What do you want to do?");
-		panelLeftDropdown.add(labelActivity);
-		cbActivities = new JComboBox<>();
-
-		panelLeftDropdown.add(cbActivities);
-
 		JPanel panelBottom = new JPanel(new BorderLayout());
 
 		// add borders to panels
-		Border borderPadded = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY), BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		Border borderEmpty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		//Border borderPadded = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.GRAY), BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		Border borderPadded = BorderFactory.createEmptyBorder(0, 0, 0, 0);
+		//Border borderEmpty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
 
 		panelDisplayTop.setBorder(borderPadded);
 		panelDisplayBottom.setBorder(borderPadded);
-		panelLeftDropdown.setBorder(borderEmpty);
+		//panelLeftDropdown.setBorder(borderEmpty);
 		panelBottom.setBorder(borderPadded);
 
 		c.gridx = 0;
 		c.gridy = 0;
-		c.weightx = .45;
-		c.fill = GridBagConstraints.BOTH;
-		panelDisplayTop.add(panelLeftDropdown, c);
+		c.weightx = .8;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		JLabel labelActivity = new JLabel("What do you want to do?");
+		labelActivity.setFont(uiFont);
+		panelDisplayTop.add(labelActivity, c);
 
-		c.gridx = 2;
-		c.gridy = 0;
-		c.weightx = .1;
-		c.fill = GridBagConstraints.NONE;
-		buttonOK = new JButton("OK");
+		cbActivities = new JComboBox<>();
+		cbActivities.setFont(uiFont);
+
+		c.gridx = 0;
+		c.gridy = 1;
+		c.weightx = .8;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		panelDisplayTop.add(cbActivities, c);
+
+		c.gridx = 1;
+		c.gridy = 1;
+		c.weightx = .2;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		JButton buttonOK = new JButton("OK");
+		buttonOK.setFont(uiFont);
 		buttonOK.addActionListener(e -> {
 			String activity = (String) cbActivities.getSelectedItem();
 
@@ -139,6 +148,7 @@ public class WeatherUI extends JFrame {
 		panelDetails.setLayout(new BoxLayout(panelDetails, BoxLayout.Y_AXIS));
 		panelDetails.setAlignmentY(Component.CENTER_ALIGNMENT);
 		labelTemp = new JLabel();
+		labelTemp.setFont(uiFont);
 		panelDetails.add(labelTemp);
 
 		c.gridx = 1;
@@ -147,6 +157,7 @@ public class WeatherUI extends JFrame {
 		panelDisplayBottom.add(panelDetails, c);
 
 		JButton btnExit = new JButton("Close");
+		btnExit.setFont(uiFont);
 		btnExit.addActionListener(e -> {
 			System.out.println("exiting the app");
 			try {
@@ -177,11 +188,9 @@ public class WeatherUI extends JFrame {
 		labelPicture.setIcon(null);
 	}
 
-	private void stop() {
-		setVisible(false);
-	}
-
 	public void updateActivities(String[] names) {
+		Arrays.sort(names);
+
 		cbActivities.removeAllItems();
 		cbActivities.addItem("");
 		for (String name : names) {

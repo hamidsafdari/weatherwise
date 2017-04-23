@@ -1,21 +1,20 @@
 {
   "activities": [
     {
-      "name": "Running",
-      "min-temp": "15",
-      "max-temp": "35",
+      "name": "Swimming",
+      "min-temp": "22",
+      "max-temp": "45",
       "desired-conditions": [
-        "Sunny",
-        "Cloudy",
-        "Wind"
+        "sun"
       ]
     },
     {
       "name": "Walk",
-      "min-temp": "17",
-      "max-temp": "32",
+      "min-temp": "15",
+      "max-temp": "45",
       "desired-conditions": [
-        "snow"
+        "sun",
+        "wind"
       ]
     },
     {

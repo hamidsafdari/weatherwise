@@ -3,6 +3,9 @@ package sau.hw.ai.agents;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -15,17 +18,26 @@ public class UIAgent extends Agent {
 
 	private Agent thisAgent;
 	private WeatherUI ui;
+	private String[] activities;
 
 	@Override
 	protected void setup() {
 		thisAgent = this;
-		System.out.println("==============");
-		System.out.println("starting agent: " + getLocalName());
-		System.out.println("==============");
 
-		// todo: removing after testing
-		ui = new WeatherUI(this);
-		ui.start();
+		SwingUtilities.invokeLater(() -> {
+			try {
+				for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+					if ("Nimbus".equals(info.getName())) {
+						UIManager.setLookAndFeel(info.getClassName());
+						break;
+					}
+				}
+			} catch (Exception ignored) {}
+
+			ui = new WeatherUI(thisAgent);
+			ui.start();
+			ui.updateActivities(activities);
+		});
 
 		addBehaviour(new UIActionsServer());
 	}
@@ -39,17 +51,11 @@ public class UIAgent extends Agent {
 					System.out.println("received the activities");
 
 					String messageText = message.getContent();
-					String[] activities = messageText.split(",");
+					activities = messageText.split(",");
 
 					if (ui != null) {
 						ui.updateActivities(activities);
 					}
-
-					// todo: remove after testing
-					//ACLMessage testMessage = new ACLMessage(ACLMessage.INFORM);
-					//testMessage.addReceiver(new AID(WeatherAgent.class.getSimpleName(), AID.ISLOCALNAME));
-					//testMessage.setContent("Swimming" + ":" + "Today");
-					//thisAgent.send(testMessage);
 				}
 
 				if (ONTOLOGY_UPDATE_UI.equals(message.getOntology())) {
