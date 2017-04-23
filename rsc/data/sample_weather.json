@@ -1,0 +1,94 @@
+{
+  "DailyForecasts": [
+    {
+      "Date": "2017-04-21T07:00:00+05:30",
+      "EpochDate": 1492738200,
+      "Temperature": {
+        "Minimum": {
+          "Value": 30
+        },
+        "Maximum": {
+          "Value": 42.2
+        }
+      },
+      "Day": {
+        "IconPhrase": "Mostly sunny"
+      },
+      "Night": {
+        "IconPhrase": "Partly cloudy"
+      }
+    },
+    {
+      "Date": "2017-04-22T07:00:00+05:30",
+      "EpochDate": 1492824600,
+      "Temperature": {
+        "Minimum": {
+          "Value": 2
+        },
+        "Maximum": {
+          "Value": 20
+        }
+      },
+      "Day": {
+        "IconPhrase": "Snowing"
+      },
+      "Night": {
+        "IconPhrase": "Hazy moonlight"
+      }
+    },
+    {
+      "Date": "2017-04-23T07:00:00+05:30",
+      "EpochDate": 1492911000,
+      "Temperature": {
+        "Minimum": {
+          "Value": 26
+        },
+        "Maximum": {
+          "Value": 41
+        }
+      },
+      "Day": {
+        "IconPhrase": "Hazy sunshine"
+      },
+      "Night": {
+        "IconPhrase": "Hazy moonlight"
+      }
+    },
+    {
+      "Date": "2017-04-24T07:00:00+05:30",
+      "EpochDate": 1492997400,
+      "Temperature": {
+        "Minimum": {
+          "Value": 24.2
+        },
+        "Maximum": {
+          "Value": 40
+        }
+      },
+      "Day": {
+        "IconPhrase": "Hazy sunshine"
+      },
+      "Night": {
+        "IconPhrase": "Hazy moonlight"
+      }
+    },
+    {
+      "Date": "2017-04-25T07:00:00+05:30",
+      "EpochDate": 1493083800,
+      "Temperature": {
+        "Minimum": {
+          "Value": 24.2
+        },
+        "Maximum": {
+          "Value": 39
+        }
+      },
+      "Day": {
+        "IconPhrase": "Hazy sunshine"
+      },
+      "Night": {
+        "IconPhrase": "Hazy moonlight"
+      }
+    }
+  ]
+}

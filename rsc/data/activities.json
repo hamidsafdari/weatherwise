@@ -1,22 +1,31 @@
 {
-    "weather": [
-        {
-            "Activity": "Running",
-            "Temperature": "30C",
-            "Description": "Sunny"
-
-        },
-        {
-            "Activity": "Swimming",
-            "Temperature": "35C",
-            "Description": "Sunny & Hot"
-
-        },
-        {
-            "Activity": "Play Football",
-            "Temperature": "28C",
-            "Description": "Overcast"
-
-        }
-    ]
+  "activities": [
+    {
+      "name": "Running",
+      "min-temp": "15",
+      "max-temp": "35",
+      "desired-conditions": [
+        "Sunny",
+        "Cloudy",
+        "Wind"
+      ]
+    },
+    {
+      "name": "Walk",
+      "min-temp": "17",
+      "max-temp": "32",
+      "desired-conditions": [
+        "snow"
+      ]
+    },
+    {
+      "name": "Skiing",
+      "min-temp": "-2",
+      "max-temp": "28",
+      "desired-conditions": [
+        "snow",
+        "sun"
+      ]
+    }
+  ]
 }

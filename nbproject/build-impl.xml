@@ -21,11 +21,11 @@ is divided into following sections:
         -->
 <project xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" basedir=".." default="default" name="weatherwise-impl">
     <fail message="Please build using Ant 1.8.0 or higher.">
-        <condition>
+        <desiredConditions>
             <not>
                 <antversion atleast="1.8.0"/>
             </not>
-        </condition>
+        </desiredConditions>
     </fail>
     <target depends="test,jar,javadoc" description="Build and test whole project." name="default"/>
     <!-- 
@@ -81,38 +81,38 @@ is divided into following sections:
     <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-init-macrodef-property" name="-do-init">
         <property name="platform.java" value="${java.home}/bin/java"/>
         <available file="${manifest.file}" property="manifest.available"/>
-        <condition property="splashscreen.available">
+        <desiredConditions property="splashscreen.available">
             <and>
                 <not>
                     <equals arg1="${application.splash}" arg2="" trim="true"/>
                 </not>
                 <available file="${application.splash}"/>
             </and>
-        </condition>
-        <condition property="main.class.available">
+        </desiredConditions>
+        <desiredConditions property="main.class.available">
             <and>
                 <isset property="main.class"/>
                 <not>
                     <equals arg1="${main.class}" arg2="" trim="true"/>
                 </not>
             </and>
-        </condition>
-        <condition property="profile.available">
+        </desiredConditions>
+        <desiredConditions property="profile.available">
             <and>
                 <isset property="javac.profile"/>
                 <length length="0" string="${javac.profile}" when="greater"/>
                 <matches pattern="1\.[89](\..*)?" string="${javac.source}"/>
             </and>
-        </condition>
-        <condition property="do.archive">
+        </desiredConditions>
+        <desiredConditions property="do.archive">
             <or>
                 <not>
                     <istrue value="${jar.archive.disabled}"/>
                 </not>
                 <istrue value="${not.archive.disabled}"/>
             </or>
-        </condition>
-        <condition property="do.mkdist">
+        </desiredConditions>
+        <desiredConditions property="do.mkdist">
             <and>
                 <isset property="do.archive"/>
                 <isset property="libs.CopyLibs.classpath"/>
@@ -120,133 +120,133 @@ is divided into following sections:
                     <istrue value="${mkdist.disabled}"/>
                 </not>
             </and>
-        </condition>
-        <condition property="do.archive+manifest.available">
+        </desiredConditions>
+        <desiredConditions property="do.archive+manifest.available">
             <and>
                 <isset property="manifest.available"/>
                 <istrue value="${do.archive}"/>
             </and>
-        </condition>
-        <condition property="do.archive+main.class.available">
+        </desiredConditions>
+        <desiredConditions property="do.archive+main.class.available">
             <and>
                 <isset property="main.class.available"/>
                 <istrue value="${do.archive}"/>
             </and>
-        </condition>
-        <condition property="do.archive+splashscreen.available">
+        </desiredConditions>
+        <desiredConditions property="do.archive+splashscreen.available">
             <and>
                 <isset property="splashscreen.available"/>
                 <istrue value="${do.archive}"/>
             </and>
-        </condition>
-        <condition property="do.archive+profile.available">
+        </desiredConditions>
+        <desiredConditions property="do.archive+profile.available">
             <and>
                 <isset property="profile.available"/>
                 <istrue value="${do.archive}"/>
             </and>
-        </condition>
-        <condition property="have.tests">
+        </desiredConditions>
+        <desiredConditions property="have.tests">
             <or>
                 <available file="${test.java.dir}"/>
             </or>
-        </condition>
-        <condition property="have.sources">
+        </desiredConditions>
+        <desiredConditions property="have.sources">
             <or>
                 <available file="${src.java.dir}"/>
             </or>
-        </condition>
-        <condition property="netbeans.home+have.tests">
+        </desiredConditions>
+        <desiredConditions property="netbeans.home+have.tests">
             <and>
                 <isset property="netbeans.home"/>
                 <isset property="have.tests"/>
             </and>
-        </condition>
-        <condition property="no.javadoc.preview">
+        </desiredConditions>
+        <desiredConditions property="no.javadoc.preview">
             <and>
                 <isset property="javadoc.preview"/>
                 <isfalse value="${javadoc.preview}"/>
             </and>
-        </condition>
+        </desiredConditions>
         <property name="run.jvmargs" value=""/>
         <property name="run.jvmargs.ide" value=""/>
         <property name="javac.compilerargs" value=""/>
         <property name="work.dir" value="${basedir}"/>
-        <condition property="no.deps">
+        <desiredConditions property="no.deps">
             <and>
                 <istrue value="${no.dependencies}"/>
             </and>
-        </condition>
+        </desiredConditions>
         <property name="javac.debug" value="true"/>
         <property name="javadoc.preview" value="true"/>
         <property name="application.args" value=""/>
         <property name="source.encoding" value="${file.encoding}"/>
         <property name="runtime.encoding" value="${source.encoding}"/>
-        <condition property="javadoc.encoding.used" value="${javadoc.encoding}">
+        <desiredConditions property="javadoc.encoding.used" value="${javadoc.encoding}">
             <and>
                 <isset property="javadoc.encoding"/>
                 <not>
                     <equals arg1="${javadoc.encoding}" arg2=""/>
                 </not>
             </and>
-        </condition>
+        </desiredConditions>
         <property name="javadoc.encoding.used" value="${source.encoding}"/>
         <property name="includes" value="**"/>
         <property name="excludes" value=""/>
         <property name="do.depend" value="false"/>
-        <condition property="do.depend.true">
+        <desiredConditions property="do.depend.true">
             <istrue value="${do.depend}"/>
-        </condition>
+        </desiredConditions>
         <path id="endorsed.classpath.path" path="${endorsed.classpath}"/>
-        <condition else="" property="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:'${toString:endorsed.classpath.path}'">
+        <desiredConditions else="" property="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:'${toString:endorsed.classpath.path}'">
             <and>
                 <isset property="endorsed.classpath"/>
                 <not>
                     <equals arg1="${endorsed.classpath}" arg2="" trim="true"/>
                 </not>
             </and>
-        </condition>
-        <condition else="" property="javac.profile.cmd.line.arg" value="-profile ${javac.profile}">
+        </desiredConditions>
+        <desiredConditions else="" property="javac.profile.cmd.line.arg" value="-profile ${javac.profile}">
             <isset property="profile.available"/>
-        </condition>
-        <condition else="false" property="jdkBug6558476">
+        </desiredConditions>
+        <desiredConditions else="false" property="jdkBug6558476">
             <and>
                 <matches pattern="1\.[56]" string="${java.specification.version}"/>
                 <not>
                     <os family="unix"/>
                 </not>
             </and>
-        </condition>
-        <condition else="false" property="javac.fork">
+        </desiredConditions>
+        <desiredConditions else="false" property="javac.fork">
             <or>
                 <istrue value="${jdkBug6558476}"/>
                 <istrue value="${javac.external.vm}"/>
             </or>
-        </condition>
+        </desiredConditions>
         <property name="jar.index" value="false"/>
         <property name="jar.index.metainf" value="${jar.index}"/>
         <property name="copylibs.rebase" value="true"/>
         <available file="${meta.inf.dir}/persistence.xml" property="has.persistence.xml"/>
-        <condition property="junit.available">
+        <desiredConditions property="junit.available">
             <or>
                 <available classname="org.junit.Test" classpath="${run.test.classpath}"/>
                 <available classname="junit.framework.Test" classpath="${run.test.classpath}"/>
             </or>
-        </condition>
-        <condition property="testng.available">
+        </desiredConditions>
+        <desiredConditions property="testng.available">
             <available classname="org.testng.annotations.Test" classpath="${run.test.classpath}"/>
-        </condition>
-        <condition property="junit+testng.available">
+        </desiredConditions>
+        <desiredConditions property="junit+testng.available">
             <and>
                 <istrue value="${junit.available}"/>
                 <istrue value="${testng.available}"/>
             </and>
-        </condition>
-        <condition else="testng" property="testng.mode" value="mixed">
+        </desiredConditions>
+        <desiredConditions else="testng" property="testng.mode" value="mixed">
             <istrue value="${junit+testng.available}"/>
-        </condition>
-        <condition else="" property="testng.debug.mode" value="-mixed">
+        </desiredConditions>
+        <desiredConditions else="" property="testng.debug.mode" value="-mixed">
             <istrue value="${junit+testng.available}"/>
-        </condition>
+        </desiredConditions>
         <property name="java.failonerror" value="true"/>
     </target>
     <target name="-post-init">
@@ -383,20 +383,20 @@ is divided into following sections:
         </macrodef>
     </target>
     <target if="${junit.available}" name="-init-macrodef-junit-init">
-        <condition else="false" property="nb.junit.batch" value="true">
+        <desiredConditions else="false" property="nb.junit.batch" value="true">
             <and>
                 <istrue value="${junit.available}"/>
                 <not>
                     <isset property="test.method"/>
                 </not>
             </and>
-        </condition>
-        <condition else="false" property="nb.junit.single" value="true">
+        </desiredConditions>
+        <desiredConditions else="false" property="nb.junit.single" value="true">
             <and>
                 <istrue value="${junit.available}"/>
                 <isset property="test.method"/>
             </and>
-        </condition>
+        </desiredConditions>
     </target>
     <target name="-init-test-properties">
         <property name="test.binaryincludes" value="&lt;nothing&gt;"/>
@@ -465,9 +465,9 @@ is divided into following sections:
             <attribute default="" name="testmethods"/>
             <element name="customize" optional="true"/>
             <sequential>
-                <condition else="" property="testng.methods.arg" value="@{testincludes}.@{testmethods}">
+                <desiredConditions else="" property="testng.methods.arg" value="@{testincludes}.@{testmethods}">
                     <isset property="test.method"/>
-                </condition>
+                </desiredConditions>
                 <union id="test.set">
                     <fileset dir="${test.java.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
                         <filename name="@{testincludes}"/>
@@ -622,12 +622,12 @@ is divided into following sections:
             <attribute default="" name="testMethod"/>
             <element name="customize2" optional="true"/>
             <sequential>
-                <condition else="-testclass @{testClass}" property="test.class.or.method" value="-methods @{testClass}.@{testMethod}">
+                <desiredConditions else="-testclass @{testClass}" property="test.class.or.method" value="-methods @{testClass}.@{testMethod}">
                     <isset property="test.method"/>
-                </condition>
-                <condition else="-suitename weatherwise -testname @{testClass} ${test.class.or.method}" property="testng.cmd.args" value="@{testClass}">
+                </desiredConditions>
+                <desiredConditions else="-suitename weatherwise -testname @{testClass} ${test.class.or.method}" property="testng.cmd.args" value="@{testClass}">
                     <matches pattern=".*\.xml" string="@{testClass}"/>
-                </condition>
+                </desiredConditions>
                 <delete dir="${build.test.results.dir}" quiet="true"/>
                 <mkdir dir="${build.test.results.dir}"/>
                 <j2seproject3:debug classname="org.testng.TestNG" classpath="${debug.test.classpath}">
@@ -775,23 +775,23 @@ is divided into following sections:
     </target>
     <target name="-init-debug-args">
         <property name="version-output" value="java version &quot;${ant.java.version}"/>
-        <condition property="have-jdk-older-than-1.4">
+        <desiredConditions property="have-jdk-older-than-1.4">
             <or>
                 <contains string="${version-output}" substring="java version &quot;1.0"/>
                 <contains string="${version-output}" substring="java version &quot;1.1"/>
                 <contains string="${version-output}" substring="java version &quot;1.2"/>
                 <contains string="${version-output}" substring="java version &quot;1.3"/>
             </or>
-        </condition>
-        <condition else="-Xdebug" property="debug-args-line" value="-Xdebug -Xnoagent -Djava.compiler=none">
+        </desiredConditions>
+        <desiredConditions else="-Xdebug" property="debug-args-line" value="-Xdebug -Xnoagent -Djava.compiler=none">
             <istrue value="${have-jdk-older-than-1.4}"/>
-        </condition>
-        <condition else="dt_socket" property="debug-transport-by-os" value="dt_shmem">
+        </desiredConditions>
+        <desiredConditions else="dt_socket" property="debug-transport-by-os" value="dt_shmem">
             <os family="windows"/>
-        </condition>
-        <condition else="${debug-transport-by-os}" property="debug-transport" value="${debug.transport}">
+        </desiredConditions>
+        <desiredConditions else="${debug-transport-by-os}" property="debug-transport" value="${debug.transport}">
             <isset property="debug.transport"/>
-        </condition>
+        </desiredConditions>
     </target>
     <target depends="-init-debug-args" name="-init-macrodef-debug">
         <macrodef name="debug" uri="http://www.netbeans.org/ns/j2se-project/3">
@@ -889,19 +889,19 @@ is divided into following sections:
         <property name="annotation.processing.run.all.processors" value="true"/>
         <property name="javac.processorpath" value="${javac.classpath}"/>
         <property name="javac.test.processorpath" value="${javac.test.classpath}"/>
-        <condition property="ap.supported.internal" value="true">
+        <desiredConditions property="ap.supported.internal" value="true">
             <not>
                 <matches pattern="1\.[0-5](\..*)?" string="${javac.source}"/>
             </not>
-        </condition>
+        </desiredConditions>
     </target>
     <target depends="-init-ap-cmdline-properties" if="ap.supported.internal" name="-init-ap-cmdline-supported">
-        <condition else="" property="ap.processors.internal" value="-processor ${annotation.processing.processors.list}">
+        <desiredConditions else="" property="ap.processors.internal" value="-processor ${annotation.processing.processors.list}">
             <isfalse value="${annotation.processing.run.all.processors}"/>
-        </condition>
-        <condition else="" property="ap.proc.none.internal" value="-proc:none">
+        </desiredConditions>
+        <desiredConditions else="" property="ap.proc.none.internal" value="-proc:none">
             <isfalse value="${annotation.processing.enabled}"/>
-        </condition>
+        </desiredConditions>
     </target>
     <target depends="-init-ap-cmdline-properties,-init-ap-cmdline-supported" name="-init-ap-cmdline">
         <property name="ap.cmd.line.internal" value=""/>
@@ -1034,12 +1034,12 @@ is divided into following sections:
             <path path="${run.classpath}"/>
             <map from="${build.classes.dir.resolved}" to="${dist.jar.resolved}"/>
         </pathconvert>
-        <condition else="" property="jar.usage.message" value="To run this application from the command line without Ant, try:${line.separator}${platform.java} -cp ${run.classpath.with.dist.jar} ${main.class}">
+        <desiredConditions else="" property="jar.usage.message" value="To run this application from the command line without Ant, try:${line.separator}${platform.java} -cp ${run.classpath.with.dist.jar} ${main.class}">
             <isset property="main.class.available"/>
-        </condition>
-        <condition else="debug" property="jar.usage.level" value="info">
+        </desiredConditions>
+        <desiredConditions else="debug" property="jar.usage.level" value="info">
             <isset property="main.class.available"/>
-        </condition>
+        </desiredConditions>
         <echo level="${jar.usage.level}" message="${jar.usage.message}"/>
     </target>
     <target depends="-do-jar-copylibs" if="do.archive" name="-do-jar-delete-manifest">
@@ -1186,12 +1186,12 @@ is divided into following sections:
                 end of pre NB72 profiling section
             -->
     <target if="netbeans.home" name="-profile-check">
-        <condition property="profiler.configured">
+        <desiredConditions property="profiler.configured">
             <or>
                 <contains casesensitive="true" string="${run.jvmargs.ide}" substring="-agentpath:"/>
                 <contains casesensitive="true" string="${run.jvmargs.ide}" substring="-javaagent:"/>
             </or>
-        </condition>
+        </desiredConditions>
     </target>
     <target depends="-profile-check,-profile-pre72" description="Profile a project in the IDE." if="profiler.configured" name="profile" unless="profiler.info.jvmargs.agent">
         <startprofiler/>
@@ -1225,17 +1225,17 @@ is divided into following sections:
             -->
     <target depends="init" if="have.sources" name="-javadoc-build">
         <mkdir dir="${dist.javadoc.dir}"/>
-        <condition else="" property="javadoc.endorsed.classpath.cmd.line.arg" value="-J${endorsed.classpath.cmd.line.arg}">
+        <desiredConditions else="" property="javadoc.endorsed.classpath.cmd.line.arg" value="-J${endorsed.classpath.cmd.line.arg}">
             <and>
                 <isset property="endorsed.classpath.cmd.line.arg"/>
                 <not>
                     <equals arg1="${endorsed.classpath.cmd.line.arg}" arg2=""/>
                 </not>
             </and>
-        </condition>
-        <condition else="" property="bug5101868workaround" value="*.java">
+        </desiredConditions>
+        <desiredConditions else="" property="bug5101868workaround" value="*.java">
             <matches pattern="1\.[56](\..*)?" string="${java.version}"/>
-        </condition>
+        </desiredConditions>
         <javadoc additionalparam="-J-Dfile.encoding=${file.encoding} ${javadoc.additionalparam}" author="${javadoc.author}" charset="UTF-8" destdir="${dist.javadoc.dir}" docencoding="UTF-8" encoding="${javadoc.encoding.used}" failonerror="true" noindex="${javadoc.noindex}" nonavbar="${javadoc.nonavbar}" notree="${javadoc.notree}" private="${javadoc.private}" source="${javac.source}" splitindex="${javadoc.splitindex}" use="${javadoc.use}" useexternalfile="true" version="${javadoc.version}" windowtitle="${javadoc.windowtitle}">
             <classpath>
                 <path path="${javac.classpath}"/>
@@ -1424,14 +1424,14 @@ is divided into following sections:
     <target depends="init,deps-clean,-do-clean,-post-clean" description="Clean build products." name="clean"/>
     <target name="-check-call-dep">
         <property file="${call.built.properties}" prefix="already.built."/>
-        <condition property="should.call.dep">
+        <desiredConditions property="should.call.dep">
             <and>
                 <not>
                     <isset property="already.built.${call.subproject}"/>
                 </not>
                 <available file="${call.script}"/>
             </and>
-        </condition>
+        </desiredConditions>
     </target>
     <target depends="-check-call-dep" if="should.call.dep" name="-maybe-call-dep">
         <ant antfile="${call.script}" inheritall="false" target="${call.target}">
