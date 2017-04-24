@@ -37,6 +37,13 @@ public class WeatherAgent extends Agent {
 			if (message != null) {
 				if (ONTOLOGY_WEATHER_REPORT.equals(message.getOntology())) {
 					try {
+						//HttpResponse<JsonNode> jsonResponse = Unirest.post("http://dataservice.accuweather.com/forecasts/v1/daily/5day/202396")
+						//		.header("accept", "application/json")
+						//		.queryString("apikey", "8h0llD7p1A9vSc7JTHXL6jrChAHzuGpo")
+						//		.queryString("metric", true)
+						//		.asJson();
+						//String messageContent = jsonResponse.getBody().toString();
+
 						String testWeather = FileUtils.readFileToString(new File("./rsc/data/sample_weather.json"), "utf-8");
 						JSONObject weatherJson = new JSONObject(testWeather);
 						weatherJson.put("activity", message.getContent());
